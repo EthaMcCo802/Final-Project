@@ -10,17 +10,20 @@ using System.Windows.Forms;
 
 namespace Final_Project
 {
-    public partial class Form1 : Form
+    public partial class PriceSelectionWindow : UserControl
     {
-        public Form1()
+        public PriceSelectionWindow()
         {
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void backButton_Click(object sender, EventArgs e)
         {
+            Form f = this.FindForm();
+            f.Controls.Remove(this);
+
             LoginScreen ls = new LoginScreen();
-            this.Controls.Add(ls);
+            f.Controls.Add(ls);
         }
     }
 }
