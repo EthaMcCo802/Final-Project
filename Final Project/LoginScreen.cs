@@ -18,9 +18,9 @@ namespace Final_Project
         {
             InitializeComponent();
         }
-        List<Associate> associates = new List<Associate>(); 
-        List<Manager> managers = new List<Manager>();
-
+        List<Associate> associates = new List<Associate>();
+        List<string> associateList = File.ReadAllLines("associateInfo.txt").ToList();
+        List<string> managerList = File.ReadAllLines("managerInfo.txt").ToList();
         private void shutdownButton_Click(object sender, EventArgs e)
         {
            Form f = this.FindForm();
@@ -29,39 +29,45 @@ namespace Final_Project
 
         private void associateCreateButton_Click(object sender, EventArgs e)
         {
-            List<string> associateList = File.ReadAllLines("associateInfo.txt").ToList();
             List<string> tempList = new List<string>();
-
-            try
+            if (managerList.Contains(userTextBox.Text) || associateList.Contains(userTextBox.Text))
             {
-                string userName = userTextBox.Text;
-                int pin = Convert.ToInt32(pinTextBox.Text);
-
-                Associate a = new Associate(userName, pin);
-                associateList.Add(Convert.ToString(a));
-
-                string messsage = "Associate account created";
-                MessageBox.Show(messsage);
+                MessageBox.Show("Account already exists");
             }
-            catch
+            else
             {
-                string message = "Please use letters for Username and numbers for PIN";
-                MessageBox.Show(message);
+                try
+                {
+                    string userName = userTextBox.Text;
+                    int pin = Convert.ToInt32(pinTextBox.Text);
+
+                    Associate a = new Associate(userName, pin);
+                    associateList.Add(Convert.ToString(a));
+
+                    MessageBox.Show("Associate account created");
+
+                    foreach (Associate associate in associates)
+                    {
+                        tempList.Add(associate.userName);
+                        tempList.Add(Convert.ToString(associate.pin));
+                    }
+
+                    File.WriteAllLines("associateInfo.txt", tempList);
+                }
+                catch
+                {
+                    string message = "Please use letters for Username and numbers for PIN";
+                    MessageBox.Show(message);
+                }
             }
 
-            foreach (Associate a in associates)
-            {
-                tempList.Add(a.userName);
-                tempList.Add(Convert.ToString(a.pin));
-            }
-
-            File.WriteAllLines("associateInfo.txt", tempList);
+            
         }
 
         private void managerCreateButton_Click(object sender, EventArgs e)
-        {
-            List<string> managerList = File.ReadAllLines("managerInfo.txt").ToList();
+        {          
             List<string> tempList = new List<string>();
+            List<Manager> managers = new List<Manager>();
 
             try
             {
@@ -87,6 +93,73 @@ namespace Final_Project
             }
 
             File.WriteAllLines("associateInfo.txt", tempList);
+        }
+
+        private void displayButton_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < associateList.Count; i += 2)
+            {
+                string userName = associateList[i];
+                int pin = Convert.ToInt32(associateList[i + 1]);
+
+                Associate a = new Associate(userName, pin);
+                associates.Add(a);
+            }
+
+            label6.Text = "";
+
+            foreach (Associate a in associates)
+            {
+                label6.Text += $"{a.userName} {a.pin}\n";
+            }
+        }
+
+        private void associateLoginButton_Click(object sender, EventArgs e)
+        {
+            if (associateList.Contains(userTextBox.Text))
+            {
+                if (associateList.Contains(pinTextBox.Text))
+                {
+                    Form f = this.FindForm();
+                    f.Controls.Remove(this);
+
+                    InventoryLookupScreen ils = new InventoryLookupScreen();
+                    f.Controls.Add(ils);
+                }
+                else
+                {
+                    MessageBox.Show("Incorrect PIN");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Account not found");
+            }
+
+            
+        }
+
+        private void managerLoginButton_Click(object sender, EventArgs e)
+        {
+            if (managerList.Contains(userTextBox.Text))
+            {
+                if (managerList.Contains(pinTextBox.Text))
+                {
+                    Form f = this.FindForm();
+                    f.Controls.Remove(this);
+
+                    InventoryLookupScreen ils = new InventoryLookupScreen();
+                    f.Controls.Add(ils);
+                }
+                else
+                {
+                    MessageBox.Show("Incorrect PIN");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Account not found");
+            }
         }
     }
 }

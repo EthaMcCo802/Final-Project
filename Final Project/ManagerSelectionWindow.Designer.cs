@@ -31,8 +31,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.logoutButton = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.priceButton = new System.Windows.Forms.Button();
+            this.warehouseButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -50,7 +50,7 @@
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(30, 23);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(151, 39);
+            this.label2.Size = new System.Drawing.Size(145, 38);
             this.label2.TabIndex = 3;
             this.label2.Text = "Manager";
             // 
@@ -65,32 +65,34 @@
             this.logoutButton.UseVisualStyleBackColor = true;
             this.logoutButton.Click += new System.EventHandler(this.logoutButton_Click);
             // 
-            // button2
+            // priceButton
             // 
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(291, 216);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(201, 96);
-            this.button2.TabIndex = 14;
-            this.button2.Text = "Price management";
-            this.button2.UseVisualStyleBackColor = true;
+            this.priceButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.priceButton.Location = new System.Drawing.Point(291, 216);
+            this.priceButton.Name = "priceButton";
+            this.priceButton.Size = new System.Drawing.Size(201, 96);
+            this.priceButton.TabIndex = 14;
+            this.priceButton.Text = "Price management";
+            this.priceButton.UseVisualStyleBackColor = true;
+            this.priceButton.Click += new System.EventHandler(this.priceButton_Click);
             // 
-            // button3
+            // warehouseButton
             // 
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(291, 434);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(201, 96);
-            this.button3.TabIndex = 15;
-            this.button3.Text = "Warehouse recievings";
-            this.button3.UseVisualStyleBackColor = true;
+            this.warehouseButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.warehouseButton.Location = new System.Drawing.Point(291, 434);
+            this.warehouseButton.Name = "warehouseButton";
+            this.warehouseButton.Size = new System.Drawing.Size(201, 96);
+            this.warehouseButton.TabIndex = 15;
+            this.warehouseButton.Text = "Warehouse recievings";
+            this.warehouseButton.UseVisualStyleBackColor = true;
+            this.warehouseButton.Click += new System.EventHandler(this.warehouseButton_Click);
             // 
             // ManagerSelectionWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.warehouseButton);
+            this.Controls.Add(this.priceButton);
             this.Controls.Add(this.logoutButton);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -106,7 +108,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button logoutButton;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button priceButton;
+        private System.Windows.Forms.Button warehouseButton;
     }
 }

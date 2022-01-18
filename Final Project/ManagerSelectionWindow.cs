@@ -25,5 +25,23 @@ namespace Final_Project
             LoginScreen ls = new LoginScreen();
             f.Controls.Add(ls);
         }
+
+        private void priceButton_Click(object sender, EventArgs e)
+        {
+            Form f = this.FindForm();
+            f.Controls.Remove(this);
+
+            PriceSelectionWindow psw = new PriceSelectionWindow();
+            f.Controls.Add(psw);
+        }
+
+        private void warehouseButton_Click(object sender, EventArgs e)
+        {
+            Form f = this.FindForm();
+            f.Controls.Remove(this);
+
+            WarehouseRecievingsWindow wrw = new WarehouseRecievingsWindow();
+            f.Controls.Add(wrw);
+        }
     }
 }

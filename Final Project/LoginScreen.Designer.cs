@@ -40,6 +40,8 @@
             this.managerLoginButton = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.shutdownButton = new System.Windows.Forms.Button();
+            this.displayButton = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -119,6 +121,7 @@
             this.associateLoginButton.TabIndex = 7;
             this.associateLoginButton.Text = "Associate login";
             this.associateLoginButton.UseVisualStyleBackColor = true;
+            this.associateLoginButton.Click += new System.EventHandler(this.associateLoginButton_Click);
             // 
             // managerCreateButton
             // 
@@ -140,6 +143,7 @@
             this.managerLoginButton.TabIndex = 9;
             this.managerLoginButton.Text = "Manager login";
             this.managerLoginButton.UseVisualStyleBackColor = true;
+            this.managerLoginButton.Click += new System.EventHandler(this.managerLoginButton_Click);
             // 
             // label5
             // 
@@ -162,10 +166,29 @@
             this.shutdownButton.UseVisualStyleBackColor = true;
             this.shutdownButton.Click += new System.EventHandler(this.shutdownButton_Click);
             // 
+            // displayButton
+            // 
+            this.displayButton.Location = new System.Drawing.Point(626, 411);
+            this.displayButton.Name = "displayButton";
+            this.displayButton.Size = new System.Drawing.Size(89, 53);
+            this.displayButton.TabIndex = 12;
+            this.displayButton.Text = "Display";
+            this.displayButton.UseVisualStyleBackColor = true;
+            this.displayButton.Click += new System.EventHandler(this.displayButton_Click);
+            // 
+            // label6
+            // 
+            this.label6.Location = new System.Drawing.Point(592, 158);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(180, 227);
+            this.label6.TabIndex = 13;
+            // 
             // LoginScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.displayButton);
             this.Controls.Add(this.shutdownButton);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.managerLoginButton);
@@ -199,5 +222,7 @@
         private System.Windows.Forms.Button managerLoginButton;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button shutdownButton;
+        private System.Windows.Forms.Button displayButton;
+        private System.Windows.Forms.Label label6;
     }
 }

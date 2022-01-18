@@ -19,8 +19,10 @@ namespace Final_Project
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            LoginScreen ls = new LoginScreen();
-            this.Controls.Add(ls);
+            //LoginScreen ls = new LoginScreen();
+            //this.Controls.Add(ls);
+            InventoryLookupScreen ils = new InventoryLookupScreen();
+            this.Controls.Add(ils);
         }
     }
 }
