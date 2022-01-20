@@ -32,12 +32,12 @@
             this.label2 = new System.Windows.Forms.Label();
             this.backButton = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button2 = new System.Windows.Forms.Button();
+            this.inventoryTextBox = new System.Windows.Forms.TextBox();
+            this.searchButton = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.button3 = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
+            this.inventoryOutput = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -56,7 +56,7 @@
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(30, 25);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(151, 39);
+            this.label2.Size = new System.Drawing.Size(145, 38);
             this.label2.TabIndex = 4;
             this.label2.Text = "Manager";
             // 
@@ -82,23 +82,24 @@
             this.label3.TabIndex = 15;
             this.label3.Text = "Inventory lookup:";
             // 
-            // textBox1
+            // inventoryTextBox
             // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(418, 153);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(230, 38);
-            this.textBox1.TabIndex = 16;
+            this.inventoryTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.inventoryTextBox.Location = new System.Drawing.Point(418, 153);
+            this.inventoryTextBox.Name = "inventoryTextBox";
+            this.inventoryTextBox.Size = new System.Drawing.Size(230, 38);
+            this.inventoryTextBox.TabIndex = 16;
             // 
-            // button2
+            // searchButton
             // 
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(343, 234);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(99, 41);
-            this.button2.TabIndex = 17;
-            this.button2.Text = "Search";
-            this.button2.UseVisualStyleBackColor = true;
+            this.searchButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.searchButton.Location = new System.Drawing.Point(343, 234);
+            this.searchButton.Name = "searchButton";
+            this.searchButton.Size = new System.Drawing.Size(99, 41);
+            this.searchButton.TabIndex = 17;
+            this.searchButton.Text = "Search";
+            this.searchButton.UseVisualStyleBackColor = true;
+            this.searchButton.Click += new System.EventHandler(this.searchButton_Click);
             // 
             // label4
             // 
@@ -129,23 +130,25 @@
             this.button3.Text = "Set";
             this.button3.UseVisualStyleBackColor = true;
             // 
-            // label5
+            // inventoryOutput
             // 
-            this.label5.Location = new System.Drawing.Point(76, 427);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(644, 364);
-            this.label5.TabIndex = 21;
+            this.inventoryOutput.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.inventoryOutput.Location = new System.Drawing.Point(76, 427);
+            this.inventoryOutput.Name = "inventoryOutput";
+            this.inventoryOutput.Size = new System.Drawing.Size(644, 364);
+            this.inventoryOutput.TabIndex = 21;
+            this.inventoryOutput.Text = "Enter item name or number";
             // 
             // PriceSelectionWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.label5);
+            this.Controls.Add(this.inventoryOutput);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.numericUpDown1);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.searchButton);
+            this.Controls.Add(this.inventoryTextBox);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.backButton);
             this.Controls.Add(this.label2);
@@ -164,11 +167,11 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button backButton;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.TextBox inventoryTextBox;
+        private System.Windows.Forms.Button searchButton;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.NumericUpDown numericUpDown1;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label inventoryOutput;
     }
 }

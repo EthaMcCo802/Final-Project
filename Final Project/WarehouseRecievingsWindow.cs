@@ -7,11 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
 
 namespace Final_Project
 {
     public partial class WarehouseRecievingsWindow : UserControl
     {
+        List<Warehouse> warehouseDB = new List<Warehouse>();
         public WarehouseRecievingsWindow()
         {
             InitializeComponent();
@@ -26,54 +28,51 @@ namespace Final_Project
             f.Controls.Add(ls);
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        public void ExtractItem()
         {
+            string newName, newCategory, newPrice, newNumber;
+            XmlReader reader = XmlReader.Create("warehouseInventory.xml");
 
+            while (reader.Read())
+            {
+                if (reader.NodeType == XmlNodeType.Text)
+                {
+                    newName = reader.ReadString();
+
+                    reader.ReadToNextSibling("Price");
+                    newPrice = reader.ReadString();
+
+                    reader.ReadToNextSibling("Category");
+                    newCategory = reader.ReadString();
+
+                    reader.ReadToNextSibling("Number");
+                    newNumber = reader.ReadString();
+
+                    Warehouse w = new Warehouse(newName, newPrice, newCategory, newNumber);
+                    warehouseDB.Add(w);
+                }
+            }
         }
 
-        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        private void searchButton_Click(object sender, EventArgs e)
         {
+            Warehouse w = warehouseDB.Find(warehouse => warehouse.newName == warehouseInventoryInput.Text || warehouse.newNumber == warehouseInventoryInput.Text);
 
-        }
+            ExtractItem();
 
-        private void label7_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label6_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
+            if (w != null)
+            {
+                warehouseInventoryOutput.Text = "Item name: " + w.newName + "\n\n"
+                    + "Unit price: $" + w.newPrice + "\n\n"
+                    + "Category: " + w.newCategory + "\n\n"
+                    + "Number: " + w.newNumber + "";
+            }
+            else
+            {
+                warehouseInventoryInput.Text = "";
+                warehouseInventoryOutput.Text = "Item does not exist";
+                return;
+            }
         }
     }
 }

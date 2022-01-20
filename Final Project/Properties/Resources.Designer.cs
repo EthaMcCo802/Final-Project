@@ -61,12 +61,68 @@ namespace Final_Project.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt; 
-        ///.
+        ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
+        ///&lt;Inventory&gt;
+        ///	&lt;Item&gt;
+        ///		&lt;Name&gt;Cheese&lt;/Name&gt;
+        ///		&lt;Price&gt;2&lt;/Price&gt;
+        ///		&lt;Category&gt;Dairy&lt;/Category&gt;
+        ///		&lt;Number&gt;5837838&lt;/Number&gt;
+        ///	&lt;/Item&gt;
+        ///	&lt;Item&gt;
+        ///		&lt;Name&gt;Milk&lt;/Name&gt;
+        ///		&lt;Price&gt;3&lt;/Price&gt;
+        ///		&lt;Category&gt;Dairy&lt;/Category&gt;
+        ///		&lt;Number&gt;9721633&lt;/Number&gt;
+        ///	&lt;/Item&gt;
+        ///	&lt;Item&gt;
+        ///		&lt;Name&gt;Eggs&lt;/Name&gt;
+        ///		&lt;Price&gt;2&lt;/Price&gt;
+        ///		&lt;Category&gt;Dairy&lt;/Category&gt;
+        ///		&lt;Number&gt;6959215&lt;/Number&gt;
+        ///	&lt;/Item&gt;
+        ///	&lt;Item&gt;
+        ///		&lt;Name&gt;Yogurt&lt;/Name&gt;
+        ///		&lt;Price&gt;3&lt;/Price&gt;
+        ///		&lt;Category&gt;Dairy&lt;/Category&gt;
+        ///		&lt;Number&gt;4979412&lt;/N [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string inventoryFile {
             get {
                 return ResourceManager.GetString("inventoryFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
+        ///&lt;Warehouse&gt;
+        ///	&lt;Item&gt;
+        ///		&lt;Name&gt;Cheese&lt;/Name&gt;
+        ///		&lt;Price&gt;2&lt;/Price&gt;
+        ///		&lt;Category&gt;Dairy&lt;/Category&gt;
+        ///		&lt;Number&gt;5837838&lt;/Number&gt;
+        ///	&lt;/Item&gt;
+        ///	&lt;Item&gt;
+        ///		&lt;Name&gt;Milk&lt;/Name&gt;
+        ///		&lt;Price&gt;3&lt;/Price&gt;
+        ///		&lt;Category&gt;Dairy&lt;/Category&gt;
+        ///		&lt;Number&gt;9721633&lt;/Number&gt;
+        ///	&lt;/Item&gt;
+        ///	&lt;Item&gt;
+        ///		&lt;Name&gt;Eggs&lt;/Name&gt;
+        ///		&lt;Price&gt;2&lt;/Price&gt;
+        ///		&lt;Category&gt;Dairy&lt;/Category&gt;
+        ///		&lt;Number&gt;6959215&lt;/Number&gt;
+        ///	&lt;/Item&gt;
+        ///	&lt;Item&gt;
+        ///		&lt;Name&gt;Yogurt&lt;/Name&gt;
+        ///		&lt;Price&gt;3&lt;/Price&gt;
+        ///		&lt;Category&gt;Dairy&lt;/Category&gt;
+        ///		&lt;Number&gt;4979412&lt;/N [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string warehouseInventory {
+            get {
+                return ResourceManager.GetString("warehouseInventory", resourceCulture);
             }
         }
     }

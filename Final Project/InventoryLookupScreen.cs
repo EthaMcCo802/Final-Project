@@ -30,26 +30,31 @@ namespace Final_Project
 
         public void ExtractItem()
         {
-            string newName, newCategory;
-            int newPrice, newNumber;
-            XmlReader reader = XmlReader.Create("Resources/inventoryFile.xml");
+            string newName, newCategory, newPrice, newNumber, newCPrice, newQuantity;
+            XmlReader reader = XmlReader.Create("inventoryFile.xml");
 
             while (reader.Read())
             {
                 if (reader.NodeType == XmlNodeType.Text)
                 {
-                    newName = reader.ReadElementContentAsString();
+                    newName = reader.ReadString();
 
                     reader.ReadToNextSibling("Price");
-                    newPrice = reader.ReadElementContentAsInt();
+                    newPrice = reader.ReadString();
+
+                    reader.ReadToNextSibling("CPrice");
+                    newCPrice = reader.ReadString();
+
+                    reader.ReadToNextSibling("Quantity");
+                    newQuantity = reader.ReadString();
 
                     reader.ReadToNextSibling("Category");
-                    newCategory = reader.ReadElementContentAsString();
+                    newCategory = reader.ReadString();
 
                     reader.ReadToNextSibling("Number");
-                    newNumber = reader.ReadElementContentAsInt();
+                    newNumber = reader.ReadString();
 
-                    Item i = new Item(newName, newPrice, newCategory, newNumber);
+                    Item i = new Item(newName, newPrice, newCPrice, newQuantity, newCategory, newNumber);
                     itemDB.Add(i);
                 }
             }
@@ -57,32 +62,24 @@ namespace Final_Project
 
         private void searchButton_Click(object sender, EventArgs e)
         {
-            Item i = itemDB.Find(item => item.newName == inventoryTextBox.Text);
+            Item i = itemDB.Find(item => item.newName == inventoryTextBox.Text || item.newNumber == inventoryTextBox.Text);
 
             ExtractItem();
 
             if (i != null)
             {
-                DisplayItem();
+                inventoryTextBox.Text = "";
+                inventoryOutput.Text = "Item name: " + i.newName + "\n\n"
+                    + "Price: $" + i.newCPrice + "\n\n"
+                    + "Quantity: " + i.newQuantity + "\n\n"
+                    + "Category: " + i.newCategory + "\n\n"
+                    + "Number: " + i.newNumber + "";
             }
             else
             {
-                MessageBox.Show("Item does not exist");
+                inventoryTextBox.Text = "";
+                inventoryOutput.Text = "Item does not exist";
                 return;
-            }
-        }
-
-        public void DisplayItem()
-        {
-            inventoryOutput.Text = "";
-
-            foreach (Item i in itemDB)
-            {
-                inventoryOutput.Text = i.newName + "\n"
-                    + i.newPrice + "\n"
-                    + i.newCategory + "\n"
-                    + i.newNumber + "";
-
             }
         }
     }
