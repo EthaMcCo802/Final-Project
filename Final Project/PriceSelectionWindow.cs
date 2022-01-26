@@ -17,6 +17,7 @@ namespace Final_Project
         public PriceSelectionWindow()
         {
             InitializeComponent();
+            ExtractItem();
         }
 
         private void backButton_Click(object sender, EventArgs e)
@@ -24,8 +25,8 @@ namespace Final_Project
             Form f = this.FindForm();
             f.Controls.Remove(this);
 
-            LoginScreen ls = new LoginScreen();
-            f.Controls.Add(ls);
+            ManagerSelectionWindow msw = new ManagerSelectionWindow();
+            f.Controls.Add(msw);
         }
         public void ExtractItem()
         {
@@ -57,13 +58,12 @@ namespace Final_Project
                     itemDB.Add(i);
                 }
             }
+            reader.Close();
         }
 
         private void searchButton_Click(object sender, EventArgs e)
         {
             Item i = itemDB.Find(item => item.newName == inventoryTextBox.Text || item.newNumber == inventoryTextBox.Text);
-
-            ExtractItem();
 
             if (i != null)
             {
@@ -81,5 +81,25 @@ namespace Final_Project
                 return;
             }
         }
+
+        private void setButton_Click(object sender, EventArgs e)
+        {
+            XmlDocument doc = new System.Xml.XmlDocument();
+            doc.Load("inventoryFile.xml");
+            int index = itemDB.FindIndex(i => i.newName == inventoryTextBox.Text);
+
+            if (index >= 0)
+            {
+                itemDB[index].newCPrice = priceInput.Text;
+            }
+            else
+            {
+                inventoryTextBox.Text = "";
+                priceInput.Value = 0;
+                inventoryOutput.Text = "Item not found";
+            }
+            doc.Save("inventoryFile.xml");
+        }
     }
 }
+

@@ -14,25 +14,58 @@ namespace Final_Project
 {
     public partial class LoginScreen : UserControl
     {
+
+        List<Associate> associates = new List<Associate>();
+        List<Manager> managers = new List<Manager>();
+
+
         public LoginScreen()
         {
             InitializeComponent();
+            LoadPeople();
         }
-        List<Associate> associates = new List<Associate>();
-        List<string> associateList = File.ReadAllLines("associateInfo.txt").ToList();
-        List<string> managerList = File.ReadAllLines("managerInfo.txt").ToList();
+
+        public void LoadPeople()
+        {
+            List<string> associateList = File.ReadAllLines("associateInfo.txt").ToList();
+            List<string> managerList = File.ReadAllLines("managerInfo.txt").ToList();
+
+
+            for (int i = 0; i < associateList.Count; i += 2)
+            {
+                string userName = associateList[i];
+                int pin = Convert.ToInt32(associateList[i + 1]);
+
+                Associate a = new Associate(userName, pin);
+                associates.Add(a);
+            }
+
+            for (int i = 0; i < managerList.Count; i += 2)
+            {
+                string userName = managerList[i];
+                int pin = Convert.ToInt32(managerList[i + 1]);
+
+                Manager m = new Manager(userName, pin);
+                managers.Add(m);
+            }
+        }
+
+
         private void shutdownButton_Click(object sender, EventArgs e)
         {
-           Form f = this.FindForm();
+            Form f = this.FindForm();
             f.Close();
         }
 
         private void associateCreateButton_Click(object sender, EventArgs e)
         {
             List<string> tempList = new List<string>();
-            if (managerList.Contains(userTextBox.Text) || associateList.Contains(userTextBox.Text))
+            int aIndex = associates.FindIndex(a => a.userName == $"{userTextBox.Text}");
+            int mIndex = managers.FindIndex(m => m.managerUserName == $"{userTextBox.Text}");
+
+            if (mIndex >= 0 || aIndex >= 0)
             {
-                MessageBox.Show("Account already exists");
+                MessageBox.Show("Account already created");
             }
             else
             {
@@ -42,9 +75,10 @@ namespace Final_Project
                     int pin = Convert.ToInt32(pinTextBox.Text);
 
                     Associate a = new Associate(userName, pin);
-                    associateList.Add(Convert.ToString(a));
+                    associates.Add(a);
 
                     MessageBox.Show("Associate account created");
+
 
                     foreach (Associate associate in associates)
                     {
@@ -56,69 +90,55 @@ namespace Final_Project
                 }
                 catch
                 {
-                    string message = "Please use letters for Username and numbers for PIN";
-                    MessageBox.Show(message);
+                    MessageBox.Show("Please use letters for Username and numbers for PIN");
                 }
             }
-
-            
         }
 
         private void managerCreateButton_Click(object sender, EventArgs e)
-        {          
-            List<string> tempList = new List<string>();
-            List<Manager> managers = new List<Manager>();
-
-            try
-            {
-                string managerUserName = userTextBox.Text;
-                int managerPin = Convert.ToInt32(pinTextBox.Text);
-
-                Manager m = new Manager(managerUserName, managerPin);
-                managerList.Add(Convert.ToString(m));
-
-                string messsage = "Manager account created";
-                MessageBox.Show(messsage);
-            }
-            catch
-            {
-                string message = "Please use letters for Username and numbers for PIN";
-                MessageBox.Show(message);
-            }
-
-            foreach (Manager m in managers)
-            {
-                tempList.Add(m.managerUserName);
-                tempList.Add(Convert.ToString(m.managerPin));
-            }
-
-            File.WriteAllLines("associateInfo.txt", tempList);
-        }
-
-        private void displayButton_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < associateList.Count; i += 2)
-            {
-                string userName = associateList[i];
-                int pin = Convert.ToInt32(associateList[i + 1]);
+            List<string> tempList = new List<string>();
+            int aIndex = associates.FindIndex(a => a.userName == userTextBox.Text);
+            int mIndex = managers.FindIndex(m => m.managerUserName == userTextBox.Text);
 
-                Associate a = new Associate(userName, pin);
-                associates.Add(a);
+            if (mIndex >= 0 || aIndex >= 0)
+            {
+                MessageBox.Show("Account already created");
             }
-
-            label6.Text = "";
-
-            foreach (Associate a in associates)
+            else
             {
-                label6.Text += $"{a.userName} {a.pin}\n";
+                try
+                {
+                    string managerUserName = userTextBox.Text;
+                    int managerPin = Convert.ToInt32(pinTextBox.Text);
+
+                    Manager m = new Manager(managerUserName, managerPin);
+                    managers.Add(m);
+
+                    foreach (Manager manager in managers)
+                    {
+                        tempList.Add(manager.managerUserName);
+                        tempList.Add(Convert.ToString(manager.managerPin));
+                    }
+
+                    MessageBox.Show("Manager account created");
+
+                    File.WriteAllLines("managerInfo.txt", tempList);
+                }
+                catch
+                {
+                    MessageBox.Show("Please use letters for Username and numbers for PIN");
+                }
             }
         }
 
         private void associateLoginButton_Click(object sender, EventArgs e)
         {
-            if (associateList.Contains(userTextBox.Text))
+            int index = associates.FindIndex(a => a.userName == userTextBox.Text);
+
+            if (index >= 0)
             {
-                if (associateList.Contains(pinTextBox.Text))
+                if (associates[index].pin == Convert.ToInt32(pinTextBox.Text))
                 {
                     Form f = this.FindForm();
                     f.Controls.Remove(this);
@@ -136,20 +156,22 @@ namespace Final_Project
                 MessageBox.Show("Account not found");
             }
 
-            
+
         }
 
         private void managerLoginButton_Click(object sender, EventArgs e)
         {
-            if (managerList.Contains(userTextBox.Text))
+            int index = managers.FindIndex(m => m.managerUserName == userTextBox.Text);
+
+            if (index >= 0)
             {
-                if (managerList.Contains(pinTextBox.Text))
+                if (managers[index].managerPin == Convert.ToInt32(pinTextBox.Text))
                 {
                     Form f = this.FindForm();
                     f.Controls.Remove(this);
 
-                    InventoryLookupScreen ils = new InventoryLookupScreen();
-                    f.Controls.Add(ils);
+                    ManagerSelectionWindow msw = new ManagerSelectionWindow();
+                    f.Controls.Add(msw);
                 }
                 else
                 {

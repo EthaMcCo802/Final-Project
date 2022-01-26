@@ -35,10 +35,10 @@
             this.inventoryTextBox = new System.Windows.Forms.TextBox();
             this.searchButton = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            this.button3 = new System.Windows.Forms.Button();
+            this.priceInput = new System.Windows.Forms.NumericUpDown();
+            this.setButton = new System.Windows.Forms.Button();
             this.inventoryOutput = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.priceInput)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -112,23 +112,24 @@
             this.label4.TabIndex = 18;
             this.label4.Text = "Customer price:";
             // 
-            // numericUpDown1
+            // priceInput
             // 
-            this.numericUpDown1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numericUpDown1.Location = new System.Drawing.Point(479, 302);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(79, 38);
-            this.numericUpDown1.TabIndex = 19;
+            this.priceInput.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.priceInput.Location = new System.Drawing.Point(479, 302);
+            this.priceInput.Name = "priceInput";
+            this.priceInput.Size = new System.Drawing.Size(79, 38);
+            this.priceInput.TabIndex = 19;
             // 
-            // button3
+            // setButton
             // 
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(354, 360);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 41);
-            this.button3.TabIndex = 20;
-            this.button3.Text = "Set";
-            this.button3.UseVisualStyleBackColor = true;
+            this.setButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.setButton.Location = new System.Drawing.Point(354, 360);
+            this.setButton.Name = "setButton";
+            this.setButton.Size = new System.Drawing.Size(75, 41);
+            this.setButton.TabIndex = 20;
+            this.setButton.Text = "Set";
+            this.setButton.UseVisualStyleBackColor = true;
+            this.setButton.Click += new System.EventHandler(this.setButton_Click);
             // 
             // inventoryOutput
             // 
@@ -144,8 +145,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.inventoryOutput);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.numericUpDown1);
+            this.Controls.Add(this.setButton);
+            this.Controls.Add(this.priceInput);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.searchButton);
             this.Controls.Add(this.inventoryTextBox);
@@ -155,7 +156,7 @@
             this.Controls.Add(this.label1);
             this.Name = "PriceSelectionWindow";
             this.Size = new System.Drawing.Size(798, 826);
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.priceInput)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -170,8 +171,8 @@
         private System.Windows.Forms.TextBox inventoryTextBox;
         private System.Windows.Forms.Button searchButton;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.NumericUpDown priceInput;
+        private System.Windows.Forms.Button setButton;
         private System.Windows.Forms.Label inventoryOutput;
     }
 }

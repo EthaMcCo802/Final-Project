@@ -37,7 +37,7 @@
             this.warehouseInventoryOutput = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.logoutButton = new System.Windows.Forms.Button();
+            this.backButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.QuantityInput)).BeginInit();
             this.SuspendLayout();
@@ -62,6 +62,7 @@
             this.buyButton.TabIndex = 50;
             this.buyButton.Text = "Buy";
             this.buyButton.UseVisualStyleBackColor = true;
+            this.buyButton.Click += new System.EventHandler(this.buyButton_Click);
             // 
             // QuantityInput
             // 
@@ -128,16 +129,16 @@
             this.label2.TabIndex = 43;
             this.label2.Text = "Manager";
             // 
-            // logoutButton
+            // backButton
             // 
-            this.logoutButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.logoutButton.Location = new System.Drawing.Point(653, 20);
-            this.logoutButton.Name = "logoutButton";
-            this.logoutButton.Size = new System.Drawing.Size(120, 50);
-            this.logoutButton.TabIndex = 42;
-            this.logoutButton.Text = "Logout";
-            this.logoutButton.UseVisualStyleBackColor = true;
-            this.logoutButton.Click += new System.EventHandler(this.logoutButton_Click);
+            this.backButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.backButton.Location = new System.Drawing.Point(665, 20);
+            this.backButton.Name = "backButton";
+            this.backButton.Size = new System.Drawing.Size(108, 50);
+            this.backButton.TabIndex = 42;
+            this.backButton.Text = "Back";
+            this.backButton.UseVisualStyleBackColor = true;
+            this.backButton.Click += new System.EventHandler(this.backButton_Click);
             // 
             // label1
             // 
@@ -160,7 +161,7 @@
             this.Controls.Add(this.warehouseInventoryOutput);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.logoutButton);
+            this.Controls.Add(this.backButton);
             this.Controls.Add(this.label1);
             this.Name = "WarehouseRecievingsWindow";
             this.Size = new System.Drawing.Size(798, 826);
@@ -181,7 +182,7 @@
         private System.Windows.Forms.Label warehouseInventoryOutput;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button logoutButton;
+        private System.Windows.Forms.Button backButton;
         private System.Windows.Forms.Label label1;
     }
 }

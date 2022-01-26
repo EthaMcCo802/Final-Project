@@ -17,6 +17,7 @@ namespace Final_Project
         public InventoryLookupScreen()
         {
             InitializeComponent();
+            ExtractItem();
         }
 
         private void logoutButton_Click(object sender, EventArgs e)
@@ -64,13 +65,11 @@ namespace Final_Project
         {
             Item i = itemDB.Find(item => item.newName == inventoryTextBox.Text || item.newNumber == inventoryTextBox.Text);
 
-            ExtractItem();
-
             if (i != null)
             {
                 inventoryTextBox.Text = "";
                 inventoryOutput.Text = "Item name: " + i.newName + "\n\n"
-                    + "Price: $" + i.newCPrice + "\n\n"
+                    + "Price: $" + i.newPrice + "\n\n"
                     + "Quantity: " + i.newQuantity + "\n\n"
                     + "Category: " + i.newCategory + "\n\n"
                     + "Number: " + i.newNumber + "";

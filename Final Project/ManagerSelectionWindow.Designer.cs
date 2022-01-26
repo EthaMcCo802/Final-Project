@@ -68,9 +68,9 @@
             // priceButton
             // 
             this.priceButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.priceButton.Location = new System.Drawing.Point(291, 216);
+            this.priceButton.Location = new System.Drawing.Point(277, 219);
             this.priceButton.Name = "priceButton";
-            this.priceButton.Size = new System.Drawing.Size(201, 96);
+            this.priceButton.Size = new System.Drawing.Size(222, 96);
             this.priceButton.TabIndex = 14;
             this.priceButton.Text = "Price management";
             this.priceButton.UseVisualStyleBackColor = true;
@@ -79,9 +79,9 @@
             // warehouseButton
             // 
             this.warehouseButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.warehouseButton.Location = new System.Drawing.Point(291, 434);
+            this.warehouseButton.Location = new System.Drawing.Point(277, 434);
             this.warehouseButton.Name = "warehouseButton";
-            this.warehouseButton.Size = new System.Drawing.Size(201, 96);
+            this.warehouseButton.Size = new System.Drawing.Size(222, 96);
             this.warehouseButton.TabIndex = 15;
             this.warehouseButton.Text = "Warehouse recievings";
             this.warehouseButton.UseVisualStyleBackColor = true;
