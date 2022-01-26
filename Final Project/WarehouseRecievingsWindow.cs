@@ -14,6 +14,7 @@ namespace Final_Project
 {
     public partial class WarehouseRecievingsWindow : UserControl
     {
+        //Global variables
         List<Warehouse> warehouseDB = new List<Warehouse>();
         List<Item> itemDB = new List<Item>();
         public WarehouseRecievingsWindow()
@@ -27,6 +28,7 @@ namespace Final_Project
             string newName, newCategory, newPrice, newNumber, newQuantity, newCPrice;
             XmlReader reader = XmlReader.Create("warehouseInventory.xml");
 
+            //Extracts the item information from the xml file
             while (reader.Read())
             {
                 if (reader.NodeType == XmlNodeType.Text)
@@ -58,23 +60,30 @@ namespace Final_Project
         public void WriteInventory()
         {
             XmlWriter writer = XmlWriter.Create("inventoryFile.xml");
+            Warehouse w = warehouseDB.Find(warehouse => warehouse.newName == warehouseInventoryInput.Text);
 
-            writer.WriteStartElement("Inventory");
-            foreach (Warehouse w in warehouseDB)
+            if (w != null)
             {
-                writer.WriteStartElement("Item");
+                //Writes information from the warehouse xml file
+                writer.WriteStartElement("Inventory");
+                //foreach (Warehouse ware in warehouseDB)
+                //{
+                    writer.WriteStartElement("Item");
 
-                writer.WriteElementString("Name", w.newName);
-                writer.WriteElementString("Price", w.newPrice);
-                writer.WriteElementString("CPrice", w.newCPrice);
-                writer.WriteElementString("Quantity", w.newQuantity);
-                writer.WriteElementString("Category", w.newCategory);
-                writer.WriteElementString("Number", w.newNumber);
+                    writer.WriteElementString("Name", w.newName);
+                    writer.WriteElementString("Price", w.newPrice);
+                    writer.WriteElementString("CPrice", w.newCPrice);
+                    writer.WriteElementString("Quantity", w.newQuantity);
+                    writer.WriteElementString("Category", w.newCategory);
+                    writer.WriteElementString("Number", w.newNumber);
 
+                    writer.WriteEndElement();
+                //}
                 writer.WriteEndElement();
+
+                writer.Close();
             }
-            writer.WriteEndElement();
-            writer.Close();
+    
         }
 
 
@@ -82,6 +91,7 @@ namespace Final_Project
         {
             Warehouse w = warehouseDB.Find(warehouse => warehouse.newName == warehouseInventoryInput.Text || warehouse.newNumber == warehouseInventoryInput.Text);
 
+            //Searches warehouse xml file for item information and displays it
             if (w != null)
             {
                 warehouseInventoryOutput.Text = "Item name: " + w.newName + "\n\n"
@@ -98,9 +108,10 @@ namespace Final_Project
 
         private void buyButton_Click(object sender, EventArgs e)
         {
-
             int index = warehouseDB.FindIndex(w => w.newName == warehouseInventoryInput.Text);
             int itemIndex = itemDB.FindIndex(i => i.newQuantity == Convert.ToString(QuantityInput.Value));
+
+            //Puts the item in the inventory xml file
             if (index >= 0)
             {
                 warehouseDB[index].newQuantity = Convert.ToString(QuantityInput.Value);
@@ -117,6 +128,7 @@ namespace Final_Project
 
         private void backButton_Click(object sender, EventArgs e)
         {
+            //Brings user back to the manager selection screen
             Form f = this.FindForm();
             f.Controls.Remove(this);
 

@@ -19,6 +19,7 @@ namespace Final_Project
 
         private void logoutButton_Click(object sender, EventArgs e)
         {
+            //Returns the user to the login screen
             Form f = this.FindForm();
             f.Controls.Remove(this);
 
@@ -28,6 +29,7 @@ namespace Final_Project
 
         private void priceButton_Click(object sender, EventArgs e)
         {
+            //Brings the user to the price selection screen
             Form f = this.FindForm();
             f.Controls.Remove(this);
 
@@ -37,6 +39,7 @@ namespace Final_Project
 
         private void warehouseButton_Click(object sender, EventArgs e)
         {
+            //Brings the user to the warehouse recievings screen
             Form f = this.FindForm();
             f.Controls.Remove(this);
 

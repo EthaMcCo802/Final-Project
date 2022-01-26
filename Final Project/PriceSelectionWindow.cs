@@ -13,6 +13,7 @@ namespace Final_Project
 {
     public partial class PriceSelectionWindow : UserControl
     {
+        //Global variables
         List<Item> itemDB = new List<Item>();
         public PriceSelectionWindow()
         {
@@ -22,6 +23,7 @@ namespace Final_Project
 
         private void backButton_Click(object sender, EventArgs e)
         {
+            //Brings user back to the manager selection screen
             Form f = this.FindForm();
             f.Controls.Remove(this);
 
@@ -33,6 +35,7 @@ namespace Final_Project
             string newName, newCategory, newPrice, newNumber, newCPrice, newQuantity;
             XmlReader reader = XmlReader.Create("inventoryFile.xml");
 
+            //Reads the item information from the inventory xml file
             while (reader.Read())
             {
                 if (reader.NodeType == XmlNodeType.Text)
@@ -65,6 +68,7 @@ namespace Final_Project
         {
             Item i = itemDB.Find(item => item.newName == inventoryTextBox.Text || item.newNumber == inventoryTextBox.Text);
 
+            //Checks to see if item is in inventory xml file and displays it
             if (i != null)
             {
                 inventoryOutput.Text = "Item name: " + i.newName + "\n\n"
@@ -88,6 +92,7 @@ namespace Final_Project
             doc.Load("inventoryFile.xml");
             int index = itemDB.FindIndex(i => i.newName == inventoryTextBox.Text);
 
+            //Sets the customer price of the selected item
             if (index >= 0)
             {
                 itemDB[index].newCPrice = priceInput.Text;

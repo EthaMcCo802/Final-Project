@@ -9,12 +9,15 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
 using System.IO;
-
+//Inventory management system
+//Mr. T
+//Ethan McComb
+//An inventory system that allows a business to control and maintain its stock as well as the price of items
 namespace Final_Project
 {
     public partial class LoginScreen : UserControl
     {
-
+        //Global variables
         List<Associate> associates = new List<Associate>();
         List<Manager> managers = new List<Manager>();
 
@@ -25,11 +28,11 @@ namespace Final_Project
             LoadPeople();
         }
 
+        //Loads the login information from an xml file
         public void LoadPeople()
         {
             List<string> associateList = File.ReadAllLines("associateInfo.txt").ToList();
             List<string> managerList = File.ReadAllLines("managerInfo.txt").ToList();
-
 
             for (int i = 0; i < associateList.Count; i += 2)
             {
@@ -53,6 +56,7 @@ namespace Final_Project
 
         private void shutdownButton_Click(object sender, EventArgs e)
         {
+            //Shuts down the program
             Form f = this.FindForm();
             f.Close();
         }
@@ -63,6 +67,7 @@ namespace Final_Project
             int aIndex = associates.FindIndex(a => a.userName == $"{userTextBox.Text}");
             int mIndex = managers.FindIndex(m => m.managerUserName == $"{userTextBox.Text}");
 
+            //Checks to see if the account is already in the xml file
             if (mIndex >= 0 || aIndex >= 0)
             {
                 MessageBox.Show("Account already created");
@@ -71,6 +76,7 @@ namespace Final_Project
             {
                 try
                 {
+                    //Saves associate login information to a xml file
                     string userName = userTextBox.Text;
                     int pin = Convert.ToInt32(pinTextBox.Text);
 
@@ -101,12 +107,14 @@ namespace Final_Project
             int aIndex = associates.FindIndex(a => a.userName == userTextBox.Text);
             int mIndex = managers.FindIndex(m => m.managerUserName == userTextBox.Text);
 
+            //Checks to see if the account is already in the xml file
             if (mIndex >= 0 || aIndex >= 0)
             {
                 MessageBox.Show("Account already created");
             }
             else
             {
+                //Saves manager login information to a xml file
                 try
                 {
                     string managerUserName = userTextBox.Text;
@@ -135,11 +143,12 @@ namespace Final_Project
         private void associateLoginButton_Click(object sender, EventArgs e)
         {
             int index = associates.FindIndex(a => a.userName == userTextBox.Text);
-
+            //Checks to see if the inputted information is stored in the xml file
             if (index >= 0)
             {
                 if (associates[index].pin == Convert.ToInt32(pinTextBox.Text))
                 {
+                    //Brings the user to the associate screen
                     Form f = this.FindForm();
                     f.Controls.Remove(this);
 
@@ -162,11 +171,12 @@ namespace Final_Project
         private void managerLoginButton_Click(object sender, EventArgs e)
         {
             int index = managers.FindIndex(m => m.managerUserName == userTextBox.Text);
-
+            //Checks to see if the inputted information is stored in the xml file
             if (index >= 0)
             {
                 if (managers[index].managerPin == Convert.ToInt32(pinTextBox.Text))
                 {
+                    //Brings the user to the manager selection screen
                     Form f = this.FindForm();
                     f.Controls.Remove(this);
 

@@ -13,6 +13,7 @@ namespace Final_Project
 {
     public partial class InventoryLookupScreen : UserControl
     {
+        //Global variables
         List<Item> itemDB = new List<Item>();
         public InventoryLookupScreen()
         {
@@ -22,6 +23,7 @@ namespace Final_Project
 
         private void logoutButton_Click(object sender, EventArgs e)
         {
+            //Returns the user to the login screen
             Form f = this.FindForm();
             f.Controls.Remove(this);
 
@@ -34,6 +36,8 @@ namespace Final_Project
             string newName, newCategory, newPrice, newNumber, newCPrice, newQuantity;
             XmlReader reader = XmlReader.Create("inventoryFile.xml");
 
+
+            //Extracts the item information from the xml file
             while (reader.Read())
             {
                 if (reader.NodeType == XmlNodeType.Text)
@@ -59,12 +63,14 @@ namespace Final_Project
                     itemDB.Add(i);
                 }
             }
+            reader.Close();
         }
 
         private void searchButton_Click(object sender, EventArgs e)
         {
             Item i = itemDB.Find(item => item.newName == inventoryTextBox.Text || item.newNumber == inventoryTextBox.Text);
 
+            //Searchs the xml for the searched item and displays it
             if (i != null)
             {
                 inventoryTextBox.Text = "";
