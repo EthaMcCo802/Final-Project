@@ -30,6 +30,33 @@ namespace Final_Project
             ManagerSelectionWindow msw = new ManagerSelectionWindow();
             f.Controls.Add(msw);
         }
+        public void WriteInventory()
+        {
+            XmlWriter writer = XmlWriter.Create("inventoryFile.xml");
+            Item i = itemDB.Find(item => item.newName == inventoryTextBox.Text);
+
+            if (i != null)
+            {
+                //Writes information from the warehouse xml file
+                writer.WriteStartElement("Inventory");
+
+                writer.WriteStartElement("Item");
+
+                writer.WriteElementString("Name", i.newName);
+                writer.WriteElementString("Price", i.newPrice);
+                writer.WriteElementString("CPrice", i.newCPrice);
+                writer.WriteElementString("Quantity", i.newQuantity);
+                writer.WriteElementString("Category", i.newCategory);
+                writer.WriteElementString("Number", i.newNumber);
+
+                writer.WriteEndElement();
+                
+                writer.WriteEndElement();
+
+                writer.Close();
+            }
+
+        }
         public void ExtractItem()
         {
             string newName, newCategory, newPrice, newNumber, newCPrice, newQuantity;
@@ -88,14 +115,14 @@ namespace Final_Project
 
         private void setButton_Click(object sender, EventArgs e)
         {
-            XmlDocument doc = new System.Xml.XmlDocument();
-            doc.Load("inventoryFile.xml");
-            int index = itemDB.FindIndex(i => i.newName == inventoryTextBox.Text);
+            int index = itemDB.FindIndex(i => i.newName == inventoryTextBox.Text || i.newNumber == inventoryTextBox.Text);
 
             //Sets the customer price of the selected item
             if (index >= 0)
-            {
-                itemDB[index].newCPrice = priceInput.Text;
+            {               
+                itemDB[index].newCPrice = Convert.ToString(priceInput.Value);
+
+                WriteInventory();
             }
             else
             {
@@ -103,7 +130,6 @@ namespace Final_Project
                 priceInput.Value = 0;
                 inventoryOutput.Text = "Item not found";
             }
-            doc.Save("inventoryFile.xml");
         }
     }
 }

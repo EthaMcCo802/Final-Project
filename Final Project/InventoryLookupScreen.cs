@@ -75,7 +75,7 @@ namespace Final_Project
             {
                 inventoryTextBox.Text = "";
                 inventoryOutput.Text = "Item name: " + i.newName + "\n\n"
-                    + "Price: $" + i.newPrice + "\n\n"
+                    + "Price: $" + i.newCPrice + "\n\n"
                     + "Quantity: " + i.newQuantity + "\n\n"
                     + "Category: " + i.newCategory + "\n\n"
                     + "Number: " + i.newNumber + "";

@@ -66,24 +66,23 @@ namespace Final_Project
             {
                 //Writes information from the warehouse xml file
                 writer.WriteStartElement("Inventory");
-                //foreach (Warehouse ware in warehouseDB)
-                //{
-                    writer.WriteStartElement("Item");
 
-                    writer.WriteElementString("Name", w.newName);
-                    writer.WriteElementString("Price", w.newPrice);
-                    writer.WriteElementString("CPrice", w.newCPrice);
-                    writer.WriteElementString("Quantity", w.newQuantity);
-                    writer.WriteElementString("Category", w.newCategory);
-                    writer.WriteElementString("Number", w.newNumber);
+                writer.WriteStartElement("Item");
 
-                    writer.WriteEndElement();
-                //}
+                writer.WriteElementString("Name", w.newName);
+                writer.WriteElementString("Price", w.newPrice);
+                writer.WriteElementString("CPrice", w.newCPrice);
+                writer.WriteElementString("Quantity", w.newQuantity);
+                writer.WriteElementString("Category", w.newCategory);
+                writer.WriteElementString("Number", w.newNumber);
+
+                writer.WriteEndElement();
+
                 writer.WriteEndElement();
 
                 writer.Close();
             }
-    
+
         }
 
 
@@ -108,8 +107,7 @@ namespace Final_Project
 
         private void buyButton_Click(object sender, EventArgs e)
         {
-            int index = warehouseDB.FindIndex(w => w.newName == warehouseInventoryInput.Text);
-            int itemIndex = itemDB.FindIndex(i => i.newQuantity == Convert.ToString(QuantityInput.Value));
+            int index = warehouseDB.FindIndex(w => w.newName == warehouseInventoryInput.Text || w.newNumber == warehouseInventoryInput.Text);
 
             //Puts the item in the inventory xml file
             if (index >= 0)
@@ -117,7 +115,7 @@ namespace Final_Project
                 warehouseDB[index].newQuantity = Convert.ToString(QuantityInput.Value);
 
                 WriteInventory();
-
+                warehouseInventoryOutput.Text = "Item added";
             }
             else
             {
