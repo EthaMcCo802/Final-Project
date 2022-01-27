@@ -40,16 +40,19 @@ namespace Final_Project
                 //Writes information from the warehouse xml file
                 writer.WriteStartElement("Inventory");
 
-                writer.WriteStartElement("Item");
+                foreach (Item item in itemDB)
+                {
+                    writer.WriteStartElement("Item");
 
-                writer.WriteElementString("Name", i.newName);
-                writer.WriteElementString("Price", i.newPrice);
-                writer.WriteElementString("CPrice", i.newCPrice);
-                writer.WriteElementString("Quantity", i.newQuantity);
-                writer.WriteElementString("Category", i.newCategory);
-                writer.WriteElementString("Number", i.newNumber);
+                    writer.WriteElementString("Name", item.newName);
+                    writer.WriteElementString("Price", item.newPrice);
+                    writer.WriteElementString("CPrice", item.newCPrice);
+                    writer.WriteElementString("Quantity", item.newQuantity);
+                    writer.WriteElementString("Category", item.newCategory);
+                    writer.WriteElementString("Number", item.newNumber);
 
-                writer.WriteEndElement();
+                    writer.WriteEndElement();
+                }
                 
                 writer.WriteEndElement();
 

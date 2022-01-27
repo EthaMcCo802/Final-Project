@@ -65,18 +65,22 @@ namespace Final_Project
             if (w != null)
             {
                 //Writes information from the warehouse xml file
+                    
                 writer.WriteStartElement("Inventory");
 
-                writer.WriteStartElement("Item");
+                foreach (Warehouse warehouse in warehouseDB)
+                {
+                    writer.WriteStartElement("Item");
 
-                writer.WriteElementString("Name", w.newName);
-                writer.WriteElementString("Price", w.newPrice);
-                writer.WriteElementString("CPrice", w.newCPrice);
-                writer.WriteElementString("Quantity", w.newQuantity);
-                writer.WriteElementString("Category", w.newCategory);
-                writer.WriteElementString("Number", w.newNumber);
+                    writer.WriteElementString("Name", warehouse.newName);
+                    writer.WriteElementString("Price", warehouse.newPrice);
+                    writer.WriteElementString("CPrice", warehouse.newCPrice);
+                    writer.WriteElementString("Quantity", warehouse.newQuantity);
+                    writer.WriteElementString("Category", warehouse.newCategory);
+                    writer.WriteElementString("Number", warehouse.newNumber);
 
-                writer.WriteEndElement();
+                    writer.WriteEndElement();
+                }
 
                 writer.WriteEndElement();
 
